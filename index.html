@@ -5,22 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Osuský Architekti</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
             line-height: 1.6;
         }
         header {
-            background: #f4f4f4;
+            background: transparent; /* Make header background transparent */
             padding: 10px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: fixed; /* Position the header at the top of the page */
+            top: 0;
+            width: 100%;
+            z-index: 10; /* Ensure the header stays above the video */
         }
         .logo-title {
             display: flex;
             align-items: center;
+        }
+        .logo-title a {
+            text-decoration: none; /* Remove underline from logo link */
+            color: inherit; /* Inherit text color */
+            display: flex; /* Ensure link takes the full width of logo */
+            align-items: center; /* Center align items */
         }
         .logo-title img {
             height: 50px;
@@ -32,15 +45,66 @@
         }
         nav {
             display: flex;
+            align-items: center; /* Align items vertically in the header */
         }
         nav a {
             color: black;
-            padding: 10px 15px;
+            padding: 15px 20px; /* Increase padding for larger clickable area */
             text-decoration: none;
             text-align: center;
+            font-size: 1.2em; /* Increase font size */
+            margin-right: 10px; /* Adjusted margin to move links closer */
         }
         nav a:hover {
             background: #ddd;
+        }
+        .social-icons {
+            display: flex;
+            align-items: center;
+            margin-left: 10px; /* Added margin to separate icons */
+        }
+        .social-icons a {
+            margin: 0 5px; /* Adjusted margin to move icons closer */
+        }
+        .social-icons img {
+            height: 30px; /* Set the height of icons */
+        }
+        .menu-icon {
+            display: none; /* Hide the menu icon by default */
+            transition: transform 0.3s ease; /* Smooth transformation */
+        }
+        @media only screen and (max-width: 768px) {
+            .menu-icon {
+                display: flex; /* Display the menu icon for smaller screens */
+                justify-content: center;
+                align-items: center;
+                width: 50px;
+                height: 50px;
+                background-color: white;
+                border-radius: 50%;
+                font-size: 24px; /* Increase font size for larger icon */
+                cursor: pointer;
+                transition: transform 0.3s ease; /* Smooth transformation */
+            }
+            nav {
+                display: none; /* Hide the navigation links by default */
+                flex-direction: column;
+                position: absolute;
+                top: 60px; /* Adjust as needed */
+                left: 0;
+                background-color: #f9f9f9;
+                width: 100%;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                z-index: 9;
+                opacity: 0;
+                transform: translateY(-10px); /* Start off slightly above */
+                transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+            }
+            nav.active {
+                display: flex;
+                opacity: 1;
+                transform: translateY(0); /* Move to original position */
+            }
         }
         footer {
             background: #f4f4f4;
@@ -49,35 +113,44 @@
             position: fixed;
             bottom: 0;
             width: 100%;
-        }
-        #video-container {
-            position: relative;
-            width: 100%;
-            height: auto;
-            overflow: hidden;
-        }
-        #video-container video {
-            width: 100%;
-            height: auto;
+       
         }
     </style>
 </head>
 <body>
     <header>
         <div class="logo-title">
-            <img src="https://github.com/TimiNo2700/osusky-architekti/raw/main/logo4.jpg" alt="Logo">
-            <h1>Osuský Architekti</h1>
+            <a href="https://timino2700.github.io/osusky-architekti/">
+                <img src="https://github.com/TimiNo2700/osusky-architekti/raw/main/logo4.jpg" alt="Logo">
+                <h1>Osuský Architekti</h1>
+            </a>
         </div>
-         <nav>
+        <nav>
             <a href="https://timino2700.github.io/osusky-architekti/">Domov</a>
             <a href="https://timino2700.github.io/osusky-architekti-onas/">O nás</a>
             <a href="https://timino2700.github.io/osusky-architekti-kontakt/">Kontakt</a>
             <a href="https://timino2700.github.io/osusky-architekti-projekty/">Projekty</a>
+            <div class="social-icons">
+                <a href="https://www.instagram.com/your-instagram-profile" target="_blank"><img src="https://timino2700.github.io/osusky-architekti/instagram.png" alt="Instagram"></a>
+                <a href="https://www.facebook.com/your-facebook-page" target="_blank"><img src="https://timino2700.github.io/osusky-architekti/facebook.png" alt="Facebook"></a>
+            </div>
         </nav>
+        <div class="menu-icon">&#9776;</div> <!-- Menu icon symbol -->
     </header>
 
     <footer>
         <p>2024 &copy; Osuský Architekti, s.r.o. All rights reserved.</p>
     </footer>
+
+    <script>
+        // JavaScript to toggle the navigation menu on and off for smaller screens
+        const menuIcon = document.querySelector('.menu-icon');
+        const nav = document.querySelector('nav');
+
+        menuIcon.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            menuIcon.classList.toggle('active'); // Toggle active class for animation
+        });
+    </script>
 </body>
 </html>
