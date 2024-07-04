@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Osuský Architekti</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <style>
         * {
             margin: 0;
@@ -13,27 +14,29 @@
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
         }
         header {
-            background: transparent; /* Make header background transparent */
-            padding: 10px 20px;
+            background: white; /* Header background set to white */
+            padding: 5px 20px; /* Reduced top and bottom padding */
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: fixed; /* Position the header at the top of the page */
+            position: fixed;
             top: 0;
             width: 100%;
-            z-index: 10; /* Ensure the header stays above the video */
+            z-index: 10;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Box shadow for better separation */
         }
         .logo-title {
             display: flex;
             align-items: center;
         }
         .logo-title a {
-            text-decoration: none; /* Remove underline from logo link */
-            color: inherit; /* Inherit text color */
-            display: flex; /* Ensure link takes the full width of logo */
-            align-items: center; /* Center align items */
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: center;
         }
         .logo-title img {
             height: 50px;
@@ -45,15 +48,15 @@
         }
         nav {
             display: flex;
-            align-items: center; /* Align items vertically in the header */
+            align-items: center;
         }
         nav a {
             color: black;
-            padding: 15px 20px; /* Increase padding for larger clickable area */
+            padding: 15px 20px;
             text-decoration: none;
             text-align: center;
-            font-size: 1.2em; /* Increase font size */
-            margin-right: 10px; /* Adjusted margin to move links closer */
+            font-size: 1.2em;
+            margin-right: 10px;
         }
         nav a:hover {
             background: #ddd;
@@ -61,50 +64,105 @@
         .social-icons {
             display: flex;
             align-items: center;
-            margin-left: 10px; /* Added margin to separate icons */
+            margin-left: 10px;
         }
         .social-icons a {
-            margin: 0 5px; /* Adjusted margin to move icons closer */
+            margin: 0 5px;
         }
         .social-icons img {
-            height: 30px; /* Set the height of icons */
+            height: 30px;
         }
         .menu-icon {
-            display: none; /* Hide the menu icon by default */
-            transition: transform 0.3s ease; /* Smooth transformation */
+            display: none;
+            transition: transform 0.3s ease;
         }
         @media only screen and (max-width: 768px) {
             .menu-icon {
-                display: flex; /* Display the menu icon for smaller screens */
+                display: flex;
                 justify-content: center;
                 align-items: center;
                 width: 50px;
                 height: 50px;
                 background-color: white;
                 border-radius: 50%;
-                font-size: 24px; /* Increase font size for larger icon */
+                font-size: 24px;
                 cursor: pointer;
-                transition: transform 0.3s ease; /* Smooth transformation */
+                transition: transform 0.3s ease;
             }
             nav {
-                display: none; /* Hide the navigation links by default */
+                display: none;
                 flex-direction: column;
                 position: absolute;
-                top: 60px; /* Adjust as needed */
+                top: 60px;
                 left: 0;
                 background-color: #f9f9f9;
                 width: 100%;
                 box-shadow: 0 2px 5px rgba(0,0,0,0.1);
                 z-index: 9;
                 opacity: 0;
-                transform: translateY(-10px); /* Start off slightly above */
-                transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+                transform: translateY(-10px);
+                transition: opacity 0.3s ease, transform 0.3s ease;
             }
             nav.active {
                 display: flex;
                 opacity: 1;
-                transform: translateY(0); /* Move to original position */
+                transform: translateY(0);
             }
+        }
+        .swiper-container {
+            width: 100%;
+            height: 600px; /* Increased slider height */
+            margin-top: 60px; /* Adjust this value if header height changes */
+            overflow: hidden; /* Prevent content overflow */
+            position: relative; /* Ensure relative positioning for pagination dots */
+        }
+        .swiper-slide {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative; /* Ensure relative positioning for pagination dots */
+        }
+        .swiper-slide img {
+            width: 100%; /* Ensure image width covers the entire slide */
+            height: 100%; /* Ensure image height covers the entire slide */
+            object-fit: cover; /* Ensure images cover the entire slide area */
+        }
+        .swiper-button-next, .swiper-button-prev {
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            width: 60px; /* Increased width */
+            height: 60px; /* Increased height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute; /* Position arrows absolutely */
+            top: 50%; /* Center vertically */
+            transform: translateY(-50%); /* Center vertically */
+            z-index: 10; /* Ensure arrows are above the slides */
+        }
+        .swiper-button-next {
+            right: 10px; /* Position next arrow on the right */
+        }
+        .swiper-button-prev {
+            left: 10px; /* Position previous arrow on the left */
+        }
+        .swiper-pagination {
+            position: absolute;
+            bottom: 10px; /* Position pagination dots at the bottom */
+            width: 100%;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .swiper-pagination-bullet {
+            background: rgba(255, 255, 255, 0.8); /* Transparent white background */
+            width: 12px; /* Enlarge pagination dots */
+            height: 12px; /* Enlarge pagination dots */
+            margin: 0 5px; /* Adjust spacing between dots */
+            border-radius: 50%; /* Round pagination dots */
+            border: 2px solid rgba(0, 0, 0, 0.5); /* Add border to dots */
         }
         footer {
             background: #f4f4f4;
@@ -113,7 +171,6 @@
             position: fixed;
             bottom: 0;
             width: 100%;
-       
         }
     </style>
 </head>
@@ -135,21 +192,51 @@
                 <a href="https://www.facebook.com/osusky.architekti/" target="_blank"><img src="https://timino2700.github.io/osusky-architekti/facebook.png" alt="Facebook"></a>
             </div>
         </nav>
-        <div class="menu-icon">&#9776;</div> <!-- Menu icon symbol -->
+        <div class="menu-icon">&#9776;</div>
     </header>
 
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="https://github.com/TimiNo2700/osusky-architekti/raw/main/EmbeddedImage.jpg" alt="Image 1"></div>
+            <div class="swiper-slide"><img src="https://github.com/TimiNo2700/osusky-architekti/raw/main/EmbeddedImage2.jpg" alt="Image 2"></div>
+            <div class="swiper-slide"><img src="https://github.com/TimiNo2700/osusky-architekti/raw/main/EmbeddedImage3.jpg" alt="Image 3"></div>
+            <div class="swiper-slide"><img src="https://github.com/TimiNo2700/osusky-architekti/raw/main/EmbeddedImage4.jpg" alt="Image 4"></div>
+            <div class="swiper-slide"><img src="https://github.com/TimiNo2700/osusky-architekti/raw/main/EmbeddedImage5.jpg" alt="Image 5"></div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+
     <footer>
-        <p> &copy; 2024  Osuský Architekti, s.r.o. All rights reserved.</p>
+        <p>&copy; 2024 Osuský Architekti, s.r.o. All rights reserved.</p>
     </footer>
 
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
-        // JavaScript to toggle the navigation menu on and off for smaller screens
         const menuIcon = document.querySelector('.menu-icon');
         const nav = document.querySelector('nav');
 
         menuIcon.addEventListener('click', () => {
             nav.classList.toggle('active');
-            menuIcon.classList.toggle('active'); // Toggle active class for animation
+            menuIcon.classList.toggle('active');
+        });
+
+        // Initialize Swiper
+        const swiper = new Swiper('.swiper-container', {
+            loop: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
         });
     </script>
 </body>
