@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Osuský Architekti</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <style>
         * {
             margin: 0;
@@ -13,27 +14,30 @@
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+            background-color: #f9f9f9; /* Light gray background */
         }
         header {
-            background: transparent; /* Make header background transparent */
-            padding: 10px 20px;
+            background: white; /* Header background set to white */
+            padding: 5px 20px; /* Reduced top and bottom padding */
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: fixed; /* Position the header at the top of the page */
+            position: fixed;
             top: 0;
             width: 100%;
-            z-index: 10; /* Ensure the header stays above the video */
+            z-index: 10;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Box shadow for better separation */
         }
         .logo-title {
             display: flex;
             align-items: center;
         }
         .logo-title a {
-            text-decoration: none; /* Remove underline from logo link */
-            color: inherit; /* Inherit text color */
-            display: flex; /* Ensure link takes the full width of logo */
-            align-items: center; /* Center align items */
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: center;
         }
         .logo-title img {
             height: 50px;
@@ -45,15 +49,15 @@
         }
         nav {
             display: flex;
-            align-items: center; /* Align items vertically in the header */
+            align-items: center;
         }
         nav a {
             color: black;
-            padding: 15px 20px; /* Increase padding for larger clickable area */
+            padding: 15px 20px;
             text-decoration: none;
             text-align: center;
-            font-size: 1.2em; /* Increase font size */
-            margin-right: 10px; /* Adjusted margin to move links closer */
+            font-size: 1.2em;
+            margin-right: 10px;
         }
         nav a:hover {
             background: #ddd;
@@ -61,81 +65,179 @@
         .social-icons {
             display: flex;
             align-items: center;
-            margin-left: 10px; /* Added margin to separate icons */
+            margin-left: 10px;
         }
         .social-icons a {
-            margin: 0 5px; /* Adjusted margin to move icons closer */
+            margin: 0 5px;
         }
         .social-icons img {
-            height: 30px; /* Set the height of icons */
+            height: 30px;
         }
         .menu-icon {
-            display: none; /* Hide the menu icon by default */
-            transition: transform 0.3s ease; /* Smooth transformation */
-        }
-        .content {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column; /* Align items in column */
-            height: calc(100vh - 100px); /* Adjusted height to keep content centered */
-            padding: 20px;
-            text-align: center;
-            margin-top: 50px; /* Added margin to move content down */
-        }
-        .content h2 {
-            font-size: 2.5em; /* Increase font size */
-            margin-bottom: 20px; /* Add some space below the heading */
-        }
-        .content p {
-            font-size: 1.4em; /* Increase font size of paragraphs */
-            line-height: 1.8; /* Increase line height for readability */
-            margin-bottom: 20px; /* Add space below paragraphs */
-        }
-        .content img {
-            max-width: 20%; /* Adjusted max-width to make image smaller */
-            margin-top: 20px; /* Add space between text and image */
+            display: none;
+            transition: transform 0.3s ease;
         }
         @media only screen and (max-width: 768px) {
             .menu-icon {
-                display: flex; /* Display the menu icon for smaller screens */
+                display: flex;
                 justify-content: center;
                 align-items: center;
                 width: 50px;
                 height: 50px;
                 background-color: white;
                 border-radius: 50%;
-                font-size: 24px; /* Increase font size for larger icon */
+                font-size: 24px;
                 cursor: pointer;
-                transition: transform 0.3s ease; /* Smooth transformation */
+                transition: transform 0.3s ease;
             }
             nav {
-                display: none; /* Hide the navigation links by default */
+                display: none;
                 flex-direction: column;
                 position: absolute;
-                top: 60px; /* Adjust as needed */
+                top: 60px;
                 left: 0;
                 background-color: #f9f9f9;
                 width: 100%;
                 box-shadow: 0 2px 5px rgba(0,0,0,0.1);
                 z-index: 9;
                 opacity: 0;
-                transform: translateY(-10px); /* Start off slightly above */
-                transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+                transform: translateY(-10px);
+                transition: opacity 0.3s ease, transform 0.3s ease;
             }
             nav.active {
                 display: flex;
                 opacity: 1;
-                transform: translateY(0); /* Move to original position */
+                transform: translateY(0);
+            }
+            .search-container h2 {
+                font-size: 2em; /* Adjusted font size for mobile */
+                margin-bottom: 10px; /* Reduced margin */
+            }
+            .search-container input[type="text"] {
+                padding: 10px; /* Reduced padding */
+                width: 100%; /* Full width on mobile */
+                max-width: 300px; /* Max width for larger screens */
+                height: 40px; /* Reduced height */
+                font-size: 0.8em; /* Adjusted font size for mobile */
+            }
+            .gallery {
+                display: block; /* Ensure items stack vertically */
+                margin-top: 20px;
+                text-align: center; /* Center align items */
+            }
+            .gallery-item {
+                width: 100%; /* Take full width of the container */
+                max-width: 100%; /* Ensure images do not exceed container width */
+                margin-bottom: 20px; /* Add margin between items */
+            }
+            .gallery-item img {
+                width: auto; /* Reset width to auto */
+                height: auto; /* Reset height to auto */
+                max-width: 100%; /* Ensure images do not exceed their container */
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+            .gallery-item .image-name {
+                font-size: 1.2em; /* Increase font size for mobile */
+                margin-top: 10px; /* Adjust spacing */
             }
         }
-        footer {
+        @media only screen and (min-width: 769px) {
+            .gallery {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                margin-top: 20px;
+                gap: 20px;
+            }
+            .gallery-item {
+                flex: 0 0 calc(33.33% - 20px);
+                max-width: calc(33.33% - 20px);
+                position: relative;
+                overflow: hidden;
+                cursor: pointer;
+            }
+            .gallery-item img {
+                width: 100%;
+                height: auto;
+                display: block;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s ease;
+            }
+            .gallery-item:hover img {
+                transform: scale(0.9);
+            }
+            .gallery-item .image-name {
+                display: none;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background-color: rgba(0, 0, 0, 0.7);
+                color: white;
+                padding: 10px;
+                font-size: 1.2em;
+                transition: opacity 0.3s ease;
+                opacity: 0;
+            }
+            .gallery-item:hover .image-name {
+                display: block;
+                opacity: 1;
+            }
+        }
+        .swiper-container {
+            width: 100%;
+            height: 600px; /* Increased slider height */
+            margin-top: 60px; /* Adjust this value if header height changes */
+            overflow: hidden; /* Prevent content overflow */
+            position: relative; /* Ensure relative positioning for pagination dots */
+        }
+        .swiper-slide {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative; /* Ensure relative positioning for pagination dots */
+        }
+        .swiper-slide img {
+            width: 100%; /* Ensure image width covers the entire slide */
+            height: 100%; /* Ensure image height covers the entire slide */
+            object-fit: cover; /* Ensure images cover the entire slide area */
+        }
+        .search-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 20; /* Ensure it is above the slides */
+            color: white;
+        }
+        .search-container h2 {
+            font-size: 3em; /* Increase font size */
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+            text-transform: uppercase; /* Uppercase for better visibility */
+            font-weight: bold; /* Bold for emphasis */
+            -webkit-text-stroke: 1px black; /* Outline */
+        }
+        .search-container input[type="text"] {
+            padding: 15px; /* Increase padding */
+            width: 500px; /* Increase width */
+            height: 60px; /* Increase height */
+            font-size: 1.2em; /* Slightly increase font size */
+            border: none;
+            border-radius: 30px; /* Rounder corners */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+        .footer {
             background: #f4f4f4;
             text-align: center;
             padding: 10px 0;
-            position: fixed;
+            position: relative;
             bottom: 0;
             width: 100%;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -157,22 +259,66 @@
                 <a href="https://www.facebook.com/osusky.architekti/" target="_blank"><img src="https://timino2700.github.io/osusky-architekti/facebook.png" alt="Facebook"></a>
             </div>
         </nav>
-        <div class="menu-icon">&#9776;</div> <!-- Menu icon symbol -->
+        <div class="menu-icon">&#9776;</div>
     </header>
 
-    <footer>
-        <p> &copy; 2024 Osuský Architekti, s.r.o. All rights reserved.</p>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="https://github.com/TimiNo2700/osusky-architekti/raw/main/EmbeddedImage.jpg" alt="Image 1"></div>
+            <div class="swiper-slide"><img src="https://github.com/TimiNo2700/osusky-architekti/raw/main/EmbeddedImage2.jpg" alt="Image 2"></div>
+            <div class="swiper-slide"><img src="https://github.com/TimiNo2700/osusky-architekti/raw/main/EmbeddedImage3.jpg" alt="Image 3"></div>
+            <div class="swiper-slide"><img src="https://github.com/TimiNo2700/osusky-architekti/raw/main/EmbeddedImage4.jpg" alt="Image 4"></div>
+            <div class="swiper-slide"><img src="https://github.com/TimiNo2700/osusky-architekti/raw/main/EmbeddedImage5.jpg" alt="Image 5"></div>
+        </div>
+        <div class="search-container">
+            <h2>Projekty</h2>
+            <div class="search-bar">
+                <input type="text" placeholder="Search...">
+            </div>
+        </div>
+    </div>
+
+    <div class="gallery">
+        <div class="gallery-item"><img src="https://github.com/TimiNo2700/osusky-architekti-projekty/blob/main/EmbeddedImage%20(1).jpg?raw=true" alt="Gallery Image 1"><div class="image-name">Gallery Image 1</div></div>
+        <div class="gallery-item"><img src="https://github.com/TimiNo2700/osusky-architekti-projekty/blob/main/EmbeddedImage%20(11).jpg?raw=true" alt="Gallery Image 3"><div class="image-name">Gallery Image 3</div></div>
+        <div class="gallery-item"><img src="https://github.com/TimiNo2700/osusky-architekti-projekty/blob/main/EmbeddedImage%20(2).jpg?raw=true" alt="Gallery Image 4"><div class="image-name">Gallery Image 4</div></div>
+        <div class="gallery-item"><img src="https://github.com/TimiNo2700/osusky-architekti-projekty/blob/main/EmbeddedImage%20(3).jpg?raw=true" alt="Gallery Image 5"><div class="image-name">Gallery Image 5</div></div>
+        <div class="gallery-item"><img src="https://github.com/TimiNo2700/osusky-architekti-projekty/blob/main/EmbeddedImage%20(4).jpg?raw=true" alt="Gallery Image 6"><div class="image-name">Gallery Image 6</div></div>
+        <div class="gallery-item"><img src="https://github.com/TimiNo2700/osusky-architekti-projekty/blob/main/EmbeddedImage%20(5).jpg?raw=true" alt="Gallery Image 7"><div class="image-name">Gallery Image 7</div></div>
+        <div class="gallery-item"><img src="https://github.com/TimiNo2700/osusky-architekti-projekty/blob/main/EmbeddedImage%20(6).jpg?raw=true" alt="Gallery Image 8"><div class="image-name">Gallery Image 8</div></div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 Osuský Architekti, s.r.o. All rights reserved.</p>
     </footer>
 
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
-        // JavaScript to toggle the navigation menu on and off for smaller screens
         const menuIcon = document.querySelector('.menu-icon');
         const nav = document.querySelector('nav');
 
         menuIcon.addEventListener('click', () => {
             nav.classList.toggle('active');
-            menuIcon.classList.toggle('active'); // Toggle active class for animation
+            menuIcon.classList.toggle('active');
+        });
+
+        // Initialize Swiper
+        const swiper = new Swiper('.swiper-container', {
+            loop: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
         });
     </script>
 </body>
 </html>
+
