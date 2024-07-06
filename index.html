@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Osuský Architekti</title>
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <style>
         * {
             margin: 0;
@@ -14,29 +13,27 @@
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
-            overflow-x: hidden; /* Prevent horizontal scrolling */
         }
         header {
-            background: white; /* Header background set to white */
-            padding: 5px 20px; /* Reduced top and bottom padding */
+            background: transparent; /* Make header background transparent */
+            padding: 10px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: fixed;
+            position: fixed; /* Position the header at the top of the page */
             top: 0;
             width: 100%;
-            z-index: 10;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Box shadow for better separation */
+            z-index: 10; /* Ensure the header stays above the video */
         }
         .logo-title {
             display: flex;
             align-items: center;
         }
         .logo-title a {
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            align-items: center;
+            text-decoration: none; /* Remove underline from logo link */
+            color: inherit; /* Inherit text color */
+            display: flex; /* Ensure link takes the full width of logo */
+            align-items: center; /* Center align items */
         }
         .logo-title img {
             height: 50px;
@@ -48,15 +45,15 @@
         }
         nav {
             display: flex;
-            align-items: center;
+            align-items: center; /* Align items vertically in the header */
         }
         nav a {
             color: black;
-            padding: 15px 20px;
+            padding: 15px 20px; /* Increase padding for larger clickable area */
             text-decoration: none;
             text-align: center;
-            font-size: 1.2em;
-            margin-right: 10px;
+            font-size: 1.2em; /* Increase font size */
+            margin-right: 10px; /* Adjusted margin to move links closer */
         }
         nav a:hover {
             background: #ddd;
@@ -64,105 +61,73 @@
         .social-icons {
             display: flex;
             align-items: center;
-            margin-left: 10px;
+            margin-left: 10px; /* Added margin to separate icons */
         }
         .social-icons a {
-            margin: 0 5px;
+            margin: 0 5px; /* Adjusted margin to move icons closer */
         }
         .social-icons img {
-            height: 30px;
+            height: 30px; /* Set the height of icons */
         }
         .menu-icon {
-            display: none;
-            transition: transform 0.3s ease;
+            display: none; /* Hide the menu icon by default */
+            transition: transform 0.3s ease; /* Smooth transformation */
+        }
+        .content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column; /* Align items in column */
+            height: calc(100vh - 100px); /* Adjusted height to keep content centered */
+            padding: 20px;
+            text-align: center;
+            margin-top: 50px; /* Added margin to move content down */
+        }
+        .content h2 {
+            font-size: 2.5em; /* Increase font size */
+            margin-bottom: 20px; /* Add some space below the heading */
+        }
+        .content p {
+            font-size: 1.4em; /* Increase font size of paragraphs */
+            line-height: 1.8; /* Increase line height for readability */
+            margin-bottom: 20px; /* Add space below paragraphs */
+        }
+        .content img {
+            max-width: 20%; /* Adjusted max-width to make image smaller */
+            margin-top: 20px; /* Add space between text and image */
         }
         @media only screen and (max-width: 768px) {
             .menu-icon {
-                display: flex;
+                display: flex; /* Display the menu icon for smaller screens */
                 justify-content: center;
                 align-items: center;
                 width: 50px;
                 height: 50px;
                 background-color: white;
                 border-radius: 50%;
-                font-size: 24px;
+                font-size: 24px; /* Increase font size for larger icon */
                 cursor: pointer;
-                transition: transform 0.3s ease;
+                transition: transform 0.3s ease; /* Smooth transformation */
             }
             nav {
-                display: none;
+                display: none; /* Hide the navigation links by default */
                 flex-direction: column;
                 position: absolute;
-                top: 60px;
+                top: 60px; /* Adjust as needed */
                 left: 0;
                 background-color: #f9f9f9;
                 width: 100%;
                 box-shadow: 0 2px 5px rgba(0,0,0,0.1);
                 z-index: 9;
                 opacity: 0;
-                transform: translateY(-10px);
-                transition: opacity 0.3s ease, transform 0.3s ease;
+                transform: translateY(-10px); /* Start off slightly above */
+                transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth transitions */
             }
             nav.active {
                 display: flex;
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateY(0); /* Move to original position */
             }
-            .search-container h2 {
-                font-size: 2em; /* Adjusted font size for mobile */
-                margin-bottom: 10px; /* Reduced margin */
-            }
-            .search-container input[type="text"] {
-                padding: 10px; /* Reduced padding */
-                width: 100%; /* Full width on mobile */
-                max-width: 300px; /* Max width for larger screens */
-                height: 40px; /* Reduced height */
-                font-size: 0.8em; /* Adjusted font size for mobile */
-            }
-        }
-        .swiper-container {
-            width: 100%;
-            height: 600px; /* Increased slider height */
-            margin-top: 60px; /* Adjust this value if header height changes */
-            overflow: hidden; /* Prevent content overflow */
-            position: relative; /* Ensure relative positioning for pagination dots */
-        }
-        .swiper-slide {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative; /* Ensure relative positioning for pagination dots */
-        }
-        .swiper-slide img {
-            width: 100%; /* Ensure image width covers the entire slide */
-            height: 100%; /* Ensure image height covers the entire slide */
-            object-fit: cover; /* Ensure images cover the entire slide area */
-        }
-        .search-container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            z-index: 20; /* Ensure it is above the slides */
-        }
-        .search-container h2 {
-            color: white;
-            font-size: 3em; /* Increase font size */
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
-            text-transform: uppercase; /* Uppercase for better visibility */
-            font-weight: bold; /* Bold for emphasis */
-            -webkit-text-stroke: 1px black; /* Outline */
-        }
-        .search-container input[type="text"] {
-            padding: 15px; /* Increase padding */
-            width: 500px; /* Increase width */
-            height: 60px; /* Increase height */
-            font-size: 1.2em; /* Slightly increase font size */
-            border: none;
-            border-radius: 30px; /* Rounder corners */
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
         }
         footer {
             background: #f4f4f4;
@@ -192,54 +157,21 @@
                 <a href="https://www.facebook.com/osusky.architekti/" target="_blank"><img src="https://timino2700.github.io/osusky-architekti/facebook.png" alt="Facebook"></a>
             </div>
         </nav>
-        <div class="menu-icon">&#9776;</div>
+        <div class="menu-icon">&#9776;</div> <!-- Menu icon symbol -->
     </header>
 
-    <div class="swiper-container">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide"><img src="https://github.com/TimiNo2700/osusky-architekti/raw/main/EmbeddedImage.jpg" alt="Image 1"></div>
-            <div class="swiper-slide"><img src="https://github.com/TimiNo2700/osusky-architekti/raw/main/EmbeddedImage2.jpg" alt="Image 2"></div>
-            <div class="swiper-slide"><img src="https://github.com/TimiNo2700/osusky-architekti/raw/main/EmbeddedImage3.jpg" alt="Image 3"></div>
-            <div class="swiper-slide"><img src="https://github.com/TimiNo2700/osusky-architekti/raw/main/EmbeddedImage4.jpg" alt="Image 4"></div>
-            <div class="swiper-slide"><img src="https://github.com/TimiNo2700/osusky-architekti/raw/main/EmbeddedImage5.jpg" alt="Image 5"></div>
-        </div>
-        <div class="search-container">
-            <h2>Projekty</h2>
-            <div class="search-bar">
-                <input type="text" placeholder="Search...">
-            </div>
-        </div>
-    </div>
-
     <footer>
-        <p>&copy; 2024 Osuský Architekti, s.r.o. All rights reserved.</p>
+        <p> &copy; 2024 Osuský Architekti, s.r.o. All rights reserved.</p>
     </footer>
 
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
+        // JavaScript to toggle the navigation menu on and off for smaller screens
         const menuIcon = document.querySelector('.menu-icon');
         const nav = document.querySelector('nav');
 
         menuIcon.addEventListener('click', () => {
             nav.classList.toggle('active');
-            menuIcon.classList.toggle('active');
-        });
-
-        // Initialize Swiper
-        const swiper = new Swiper('.swiper-container', {
-            loop: true,
-            autoplay: {
-                delay: 5000,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
+            menuIcon.classList.toggle('active'); // Toggle active class for animation
         });
     </script>
 </body>
