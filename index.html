@@ -108,6 +108,17 @@
                 opacity: 1;
                 transform: translateY(0);
             }
+            .search-container h2 {
+                font-size: 2em; /* Adjusted font size for mobile */
+                margin-bottom: 10px; /* Reduced margin */
+            }
+            .search-container input[type="text"] {
+                padding: 10px; /* Reduced padding */
+                width: 100%; /* Full width on mobile */
+                max-width: 300px; /* Max width for larger screens */
+                height: 40px; /* Reduced height */
+                font-size: 0.8em; /* Adjusted font size for mobile */
+            }
         }
         .swiper-container {
             width: 100%;
@@ -127,42 +138,31 @@
             height: 100%; /* Ensure image height covers the entire slide */
             object-fit: cover; /* Ensure images cover the entire slide area */
         }
-        .swiper-button-next, .swiper-button-prev {
-            color: white;
-            background-color: rgba(0, 0, 0, 0.5);
-            border-radius: 50%;
-            width: 60px; /* Increased width */
-            height: 60px; /* Increased height */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: absolute; /* Position arrows absolutely */
-            top: 50%; /* Center vertically */
-            transform: translateY(-50%); /* Center vertically */
-            z-index: 10; /* Ensure arrows are above the slides */
-        }
-        .swiper-button-next {
-            right: 10px; /* Position next arrow on the right */
-        }
-        .swiper-button-prev {
-            left: 10px; /* Position previous arrow on the left */
-        }
-        .swiper-pagination {
+        .search-container {
             position: absolute;
-            bottom: 10px; /* Position pagination dots at the bottom */
-            width: 100%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             text-align: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            z-index: 20; /* Ensure it is above the slides */
         }
-        .swiper-pagination-bullet {
-            background: rgba(255, 255, 255, 0.8); /* Transparent white background */
-            width: 12px; /* Enlarge pagination dots */
-            height: 12px; /* Enlarge pagination dots */
-            margin: 0 5px; /* Adjust spacing between dots */
-            border-radius: 50%; /* Round pagination dots */
-            border: 2px solid rgba(0, 0, 0, 0.5); /* Add border to dots */
+        .search-container h2 {
+            color: white;
+            font-size: 3em; /* Increase font size */
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+            text-transform: uppercase; /* Uppercase for better visibility */
+            font-weight: bold; /* Bold for emphasis */
+            -webkit-text-stroke: 1px black; /* Outline */
+        }
+        .search-container input[type="text"] {
+            padding: 15px; /* Increase padding */
+            width: 500px; /* Increase width */
+            height: 60px; /* Increase height */
+            font-size: 1.2em; /* Slightly increase font size */
+            border: none;
+            border-radius: 30px; /* Rounder corners */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
         }
         footer {
             background: #f4f4f4;
@@ -203,9 +203,12 @@
             <div class="swiper-slide"><img src="https://github.com/TimiNo2700/osusky-architekti/raw/main/EmbeddedImage4.jpg" alt="Image 4"></div>
             <div class="swiper-slide"><img src="https://github.com/TimiNo2700/osusky-architekti/raw/main/EmbeddedImage5.jpg" alt="Image 5"></div>
         </div>
-        <div class="swiper-pagination"></div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
+        <div class="search-container">
+            <h2>Projekty</h2>
+            <div class="search-bar">
+                <input type="text" placeholder="Search...">
+            </div>
+        </div>
     </div>
 
     <footer>
