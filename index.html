@@ -6,6 +6,7 @@
     <title>Osuský Architekti</title>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <style>
+        /* Your existing CSS code */
         * {
             margin: 0;
             padding: 0;
@@ -14,12 +15,12 @@
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
-            overflow-x: hidden; /* Prevent horizontal scrolling */
-            background-color: #f9f9f9; /* Light gray background */
+            overflow-x: hidden;
+            background-color: #f9f9f9;
         }
         header {
-            background: white; /* Header background set to white */
-            padding: 5px 20px; /* Reduced top and bottom padding */
+            background: white;
+            padding: 5px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -27,7 +28,7 @@
             top: 0;
             width: 100%;
             z-index: 10;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Box shadow for better separation */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         .logo-title {
             display: flex;
@@ -110,36 +111,36 @@
                 transform: translateY(0);
             }
             .search-container h2 {
-                font-size: 2em; /* Adjusted font size for mobile */
-                margin-bottom: 10px; /* Reduced margin */
+                font-size: 2em;
+                margin-bottom: 10px;
             }
             .search-container input[type="text"] {
-                padding: 10px; /* Reduced padding */
-                width: 100%; /* Full width on mobile */
-                max-width: 300px; /* Max width for larger screens */
-                height: 40px; /* Reduced height */
-                font-size: 0.8em; /* Adjusted font size for mobile */
+                padding: 10px;
+                width: 100%;
+                max-width: 300px;
+                height: 40px;
+                font-size: 0.8em;
             }
             .gallery {
-                display: block; /* Ensure items stack vertically */
+                display: block;
                 margin-top: 20px;
-                text-align: center; /* Center align items */
+                text-align: center;
             }
             .gallery-item {
-                width: 100%; /* Take full width of the container */
-                max-width: 100%; /* Ensure images do not exceed container width */
-                margin-bottom: 20px; /* Add margin between items */
+                width: 100%;
+                max-width: 100%;
+                margin-bottom: 20px;
             }
             .gallery-item img {
-                width: auto; /* Reset width to auto */
-                height: auto; /* Reset height to auto */
-                max-width: 100%; /* Ensure images do not exceed their container */
+                width: auto;
+                height: auto;
+                max-width: 100%;
                 border-radius: 8px;
                 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             }
             .gallery-item .image-name {
-                font-size: 1.2em; /* Increase font size for mobile */
-                margin-top: 10px; /* Adjust spacing */
+                font-size: 1.2em;
+                margin-top: 10px;
             }
         }
         @media only screen and (min-width: 769px) {
@@ -188,21 +189,21 @@
         }
         .swiper-container {
             width: 100%;
-            height: 600px; /* Increased slider height */
-            margin-top: 60px; /* Adjust this value if header height changes */
-            overflow: hidden; /* Prevent content overflow */
-            position: relative; /* Ensure relative positioning for pagination dots */
+            height: 600px;
+            margin-top: 60px;
+            overflow: hidden;
+            position: relative;
         }
         .swiper-slide {
             display: flex;
             justify-content: center;
             align-items: center;
-            position: relative; /* Ensure relative positioning for pagination dots */
+            position: relative;
         }
         .swiper-slide img {
-            width: 100%; /* Ensure image width covers the entire slide */
-            height: 100%; /* Ensure image height covers the entire slide */
-            object-fit: cover; /* Ensure images cover the entire slide area */
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         .search-container {
             position: absolute;
@@ -210,24 +211,24 @@
             left: 50%;
             transform: translate(-50%, -50%);
             text-align: center;
-            z-index: 20; /* Ensure it is above the slides */
+            z-index: 5; /* Adjusted z-index */
             color: white;
         }
         .search-container h2 {
-            font-size: 3em; /* Increase font size */
+            font-size: 3em;
             margin-bottom: 20px;
             text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
-            text-transform: uppercase; /* Uppercase for better visibility */
-            font-weight: bold; /* Bold for emphasis */
-            -webkit-text-stroke: 1px black; /* Outline */
+            text-transform: uppercase;
+            font-weight: bold;
+            -webkit-text-stroke: 1px black;
         }
         .search-container input[type="text"] {
-            padding: 15px; /* Increase padding */
-            width: 500px; /* Increase width */
-            height: 60px; /* Increase height */
-            font-size: 1.2em; /* Slightly increase font size */
+            padding: 15px;
+            width: 500px;
+            height: 60px;
+            font-size: 1.2em;
             border: none;
-            border-radius: 30px; /* Rounder corners */
+            border-radius: 30px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.3);
         }
         .footer {
@@ -273,19 +274,19 @@
         <div class="search-container">
             <h2>Projekty</h2>
             <div class="search-bar">
-                <input type="text" placeholder="Search...">
+                <input type="text" placeholder="Search..." id="search-input">
             </div>
         </div>
     </div>
 
-    <div class="gallery">
-        <div class="gallery-item"><img src="https://github.com/TimiNo2700/osusky-architekti-projekty/blob/main/EmbeddedImage%20(1).jpg?raw=true" alt="Gallery Image 1"><div class="image-name">Gallery Image 1</div></div>
-        <div class="gallery-item"><img src="https://github.com/TimiNo2700/osusky-architekti-projekty/blob/main/EmbeddedImage%20(11).jpg?raw=true" alt="Gallery Image 3"><div class="image-name">Gallery Image 3</div></div>
-        <div class="gallery-item"><img src="https://github.com/TimiNo2700/osusky-architekti-projekty/blob/main/EmbeddedImage%20(2).jpg?raw=true" alt="Gallery Image 4"><div class="image-name">Gallery Image 4</div></div>
-        <div class="gallery-item"><img src="https://github.com/TimiNo2700/osusky-architekti-projekty/blob/main/EmbeddedImage%20(3).jpg?raw=true" alt="Gallery Image 5"><div class="image-name">Gallery Image 5</div></div>
-        <div class="gallery-item"><img src="https://github.com/TimiNo2700/osusky-architekti-projekty/blob/main/EmbeddedImage%20(4).jpg?raw=true" alt="Gallery Image 6"><div class="image-name">Gallery Image 6</div></div>
-        <div class="gallery-item"><img src="https://github.com/TimiNo2700/osusky-architekti-projekty/blob/main/EmbeddedImage%20(5).jpg?raw=true" alt="Gallery Image 7"><div class="image-name">Gallery Image 7</div></div>
-        <div class="gallery-item"><img src="https://github.com/TimiNo2700/osusky-architekti-projekty/blob/main/EmbeddedImage%20(6).jpg?raw=true" alt="Gallery Image 8"><div class="image-name">Gallery Image 8</div></div>
+    <div class="gallery" id="gallery">
+        <div class="gallery-item" data-name="Gallery Image 1"><img src="https://github.com/TimiNo2700/osusky-architekti-projekty/blob/main/EmbeddedImage%20(1).jpg?raw=true" alt="Gallery Image 1"><div class="image-name">Gallery Image 1</div></div>
+        <div class="gallery-item" data-name="Gallery Image 3"><img src="https://github.com/TimiNo2700/osusky-architekti-projekty/blob/main/EmbeddedImage%20(11).jpg?raw=true" alt="Gallery Image 3"><div class="image-name">Gallery Image 3</div></div>
+        <div class="gallery-item" data-name="Gallery Image 4"><img src="https://github.com/TimiNo2700/osusky-architekti-projekty/blob/main/EmbeddedImage%20(2).jpg?raw=true" alt="Gallery Image 4"><div class="image-name">Gallery Image 4</div></div>
+        <div class="gallery-item" data-name="Gallery Image 5"><img src="https://github.com/TimiNo2700/osusky-architekti-projekty/blob/main/EmbeddedImage%20(3).jpg?raw=true" alt="Gallery Image 5"><div class="image-name">Gallery Image 5</div></div>
+        <div class="gallery-item" data-name="Gallery Image 6"><img src="https://github.com/TimiNo2700/osusky-architekti-projekty/blob/main/EmbeddedImage%20(4).jpg?raw=true" alt="Gallery Image 6"><div class="image-name">Gallery Image 6</div></div>
+        <div class="gallery-item" data-name="Gallery Image 7"><img src="https://github.com/TimiNo2700/osusky-architekti-projekty/blob/main/EmbeddedImage%20(5).jpg?raw=true" alt="Gallery Image 7"><div class="image-name">Gallery Image 7</div></div>
+        <div class="gallery-item" data-name="Gallery Image 8"><img src="https://github.com/TimiNo2700/osusky-architekti-projekty/blob/main/EmbeddedImage%20(6).jpg?raw=true" alt="Gallery Image 8"><div class="image-name">Gallery Image 8</div></div>
     </div>
 
     <footer class="footer">
@@ -317,6 +318,21 @@
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',
             },
+        });
+
+        // Search functionality
+        document.getElementById('search-input').addEventListener('input', function() {
+            const searchQuery = this.value.toLowerCase();
+            const galleryItems = document.querySelectorAll('.gallery-item');
+
+            galleryItems.forEach(item => {
+                const itemName = item.getAttribute('data-name').toLowerCase();
+                if (itemName.includes(searchQuery)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
         });
     </script>
 </body>
